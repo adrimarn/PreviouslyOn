@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import OAuth2Login from "react-simple-oauth2-login";
-import {useCookies} from "react-cookie";
+import {useSignIn, useSignOut, useIsAuthenticated} from 'react-auth-kit'
+
 import ErrorAlert from './ErrorAlert';
 import {
     authorizationUrl,
@@ -14,8 +15,12 @@ export default function AuthorizationCodeExample() {
     const [accessToken, setAccessToken] = useState(null);
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
-    // eslint-disable-next-line
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+    const signIn = useSignIn()
+    const signOut = useSignOut()
+    const isAuthenticated = useIsAuthenticated()
+
+    let userToken
+
 
     // You can test this with a GitHub OAuth2 app (provided test server supports GitHub and Spotify)
     const onSuccess = ({code}) => fetch(`${oauthServerUrl}/oauth/access_token`, {
@@ -28,27 +33,41 @@ export default function AuthorizationCodeExample() {
         .then(res => res.json())
         .then((data) => {
             setAccessToken(data.access_token);
-            setCookie('token', data.access_token);
+            userToken = data.access_token;
             return data.access_token;
         })
         .then(token => fetch(`${oauthServerUrl}/members/infos`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                authorization: `Bearer ${token}`,
-                'X-BetaSeries-Key': clientId
-            },
-        }))
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    authorization: `Bearer ${token}`,
+                    'X-BetaSeries-Key': clientId
+                },
+            })
+        )
         .then(res => res.json())
-        .then(setUser)
-        .catch(setError);
+        .then(user => {
+                setUser(user.member)
+                return user.member
+            }
+        )
+        .then(user => {
+            if (signIn({
+                token: userToken,
+                expiresIn: 1440,
+                tokenType: "Bearer",
+                authState: {user: user},
+            })) {
+                // Redirect or do-something
+            }
+        })
 
     return (
         <div className="column">
             {
                 error && <ErrorAlert error={error}/>
             }
-            {!accessToken ? (
+            {!isAuthenticated() ? (
                 <OAuth2Login
                     id="auth-code-login-btn"
                     className='button'
@@ -61,23 +80,8 @@ export default function AuthorizationCodeExample() {
                     onFailure={setError}
                 />
             ) : (
-                <div className='button'>
-                    Déconnexion
-                </div>
+                <button className='button' onClick={() => signOut()}>Déconnexion</button>
             )
-            }
-            {
-                accessToken && <p>Access token: {accessToken}</p>
-            }
-            {
-                user && (
-                    <div>
-                        <h3>User data</h3>
-                        <p>Obtained from token-protected API</p>
-                        <p>{user.member.login} ({user.member.id})</p>
-                        <img src={user.member.avatar} alt={user.member.login}/>
-                    </div>
-                )
             }
         </div>
     );
