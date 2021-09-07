@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
-import AuthorizationCodeExample from "./Authorization";
+import Authorization from "./Authorization";
 import Callback from "./pages/Callback";
 import {AuthProvider} from "react-auth-kit";
 
@@ -12,7 +12,7 @@ function App() {
                       cookieDomain={window.location.hostname}
         >
             <BrowserRouter>
-                <AuthorizationCodeExample/>
+                <Authorization/>
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
                     <Route path='/' component={Home}/>

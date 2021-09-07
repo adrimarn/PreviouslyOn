@@ -11,9 +11,7 @@ import {
     oauthServerUrl,
 } from './settings';
 
-export default function AuthorizationCodeExample() {
-    const [accessToken, setAccessToken] = useState(null);
-    const [user, setUser] = useState(null);
+export default function Authorization() {
     const [error, setError] = useState(null);
     const signIn = useSignIn()
     const signOut = useSignOut()
@@ -32,7 +30,6 @@ export default function AuthorizationCodeExample() {
     })
         .then(res => res.json())
         .then((data) => {
-            setAccessToken(data.access_token);
             userToken = data.access_token;
             return data.access_token;
         })
@@ -46,17 +43,12 @@ export default function AuthorizationCodeExample() {
             })
         )
         .then(res => res.json())
-        .then(user => {
-                setUser(user.member)
-                return user.member
-            }
-        )
-        .then(user => {
+        .then((user) => {
             if (signIn({
                 token: userToken,
                 expiresIn: 1440,
                 tokenType: "Bearer",
-                authState: {user: user},
+                authState: {user: user.member},
             })) {
                 // Redirect or do-something
             }
