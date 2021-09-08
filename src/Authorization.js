@@ -26,7 +26,7 @@ export default function Authorization(props) {
             userToken = data.access_token;
             return data.access_token;
         })
-        .then(token => fetchAPI.getUserInfo(token)
+        .then(token => fetchAPI.getUserInfo({token})
         )
         .then(res => res.json())
         .then((user) => {

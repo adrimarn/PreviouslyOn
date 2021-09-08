@@ -6,4 +6,4 @@ const Token = () => {
     return cookies._auth
 }
 
-export const userToken = <Token/>
+export const authToken = <Token/>

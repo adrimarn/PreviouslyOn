@@ -25,17 +25,23 @@ class FetchAPI {
         })
     }
 
-    getUserInfo(token) {
+    getUserInfo(params) {
         return fetch(`${oauthServerUrl}/members/infos`, {
             method: 'GET',
-            headers: authHeader(token),
+            headers: authHeader(params.token),
         })
     }
 
-    getMoviesDiscover(type) {
-        return fetch(`${oauthServerUrl}/members/infos?type=${type}`, {
+    getShowsMember(params) {
+        let urlAPI
+        if (params.id == null) {
+            urlAPI = `${oauthServerUrl}/shows/member?order=${params.order}&limit=${params.limit}`
+        } else {
+            urlAPI = `${oauthServerUrl}/shows/member?id=${params.id}&order=${params.order}&limit=${params.limit}`
+        }
+        return fetch(urlAPI, {
             method: 'GET',
-            headers: authHeader(),
+            headers: authHeader(params.token),
         })
     }
 }
