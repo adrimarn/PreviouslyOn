@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import OAuth2Login from "react-simple-oauth2-login";
 import {useSignIn, useSignOut, useIsAuthenticated} from 'react-auth-kit'
+import {fetchAPI} from "./services/FetchAPI";
 
 import ErrorAlert from './ErrorAlert';
 import {
     authorizationUrl,
     clientId,
-    clientSecret,
     redirectUri,
-    oauthServerUrl,
 } from './settings';
 
 export default function Authorization(props) {
@@ -21,26 +20,13 @@ export default function Authorization(props) {
 
 
     // You can test this with a GitHub OAuth2 app (provided test server supports GitHub and Spotify)
-    const onSuccess = ({code}) => fetch(`${oauthServerUrl}/oauth/access_token`, {
-        method: 'POST',
-        body: JSON.stringify({code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri}),
-        headers: {
-            'content-type': 'application/json',
-        },
-    })
+    const onSuccess = ({code}) => fetchAPI.getToken(code)
         .then(res => res.json())
         .then((data) => {
             userToken = data.access_token;
             return data.access_token;
         })
-        .then(token => fetch(`${oauthServerUrl}/members/infos`, {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    authorization: `Bearer ${token}`,
-                    'X-BetaSeries-Key': clientId
-                },
-            })
+        .then(token => fetchAPI.getUserInfo(token)
         )
         .then(res => res.json())
         .then((user) => {
