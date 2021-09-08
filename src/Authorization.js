@@ -11,7 +11,7 @@ import {
     oauthServerUrl,
 } from './settings';
 
-export default function Authorization() {
+export default function Authorization(props) {
     const [error, setError] = useState(null);
     const signIn = useSignIn()
     const signOut = useSignOut()
@@ -62,7 +62,7 @@ export default function Authorization() {
             {!isAuthenticated() ? (
                 <OAuth2Login
                     id="auth-code-login-btn"
-                    className='button'
+                    className={props.className ?? 'button'}
                     authorizationUrl={authorizationUrl}
                     clientId={clientId}
                     redirectUri={redirectUri}

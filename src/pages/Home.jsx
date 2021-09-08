@@ -1,5 +1,6 @@
 import React from 'react';
 import {useAuthUser, useIsAuthenticated} from 'react-auth-kit'
+import Navbar from "../components/Navbar";
 
 const Welcome = () => {
     const auth = useAuthUser()
@@ -14,16 +15,19 @@ const Welcome = () => {
 
 const Home = () => {
     return (
-        <section className="section">
-            <div className="container">
-                <h1 className="title">
-                    <Welcome/>
-                </h1>
-                <p className="subtitle">
-                    My first website with <strong>Bulma</strong>!
-                </p>
-            </div>
-        </section>
+        <>
+            <Navbar/>
+            <section className="section">
+                <div className="container">
+                    <h1 className="title">
+                        <Welcome/>
+                    </h1>
+                    <p className="subtitle">
+                        My first website with <strong>Bulma</strong>!
+                    </p>
+                </div>
+            </section>
+        </>
     );
 }
 
