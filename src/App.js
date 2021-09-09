@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
 import Callback from "./pages/Callback";
 import {AuthProvider} from "react-auth-kit";
+import Login from "./pages/Login";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/' component={Home}/>
+                    <Route exact path='/login' component={Login}/>
                 </Switch>
             </BrowserRouter>
         </AuthProvider>

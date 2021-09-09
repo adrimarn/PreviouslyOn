@@ -53,9 +53,10 @@ export default function Authorization(props) {
                     clientId={clientId}
                     redirectUri={redirectUri}
                     responseType="code"
-                    buttonText="Connexion"
+                    buttonText={props.buttonText ?? 'Connexion'}
                     onSuccess={onSuccess}
                     onFailure={setError}
+
                 />
             ) : (
                 <button className='button' onClick={() => signOut()}>Déconnexion</button>
