@@ -39,6 +39,7 @@ class FetchAPI {
         } else {
             urlAPI = `${oauthServerUrl}/shows/member?id=${params.id}&order=${params.order}&limit=${params.limit}`
         }
+        console.log(params.token)
         return fetch(urlAPI, {
             method: 'GET',
             headers: authHeader(params.token),

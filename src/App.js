@@ -2,8 +2,9 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
 import Callback from "./pages/Callback";
-import {AuthProvider} from "react-auth-kit";
+import {AuthProvider, PrivateRoute} from "react-auth-kit";
 import Login from "./pages/Login";
+import Shows from "./pages/Shows";
 
 function App() {
     return (
@@ -14,8 +15,9 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
-                    <Route exact path='/' component={Home}/>
                     <Route exact path='/login' component={Login}/>
+                    <PrivateRoute exact path='/shows' component={Shows} loginPath={'/login'}/>
+                    <Route exact path='/' component={Home}/>
                 </Switch>
             </BrowserRouter>
         </AuthProvider>
