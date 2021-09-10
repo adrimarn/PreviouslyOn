@@ -1,9 +1,11 @@
 import React from 'react';
 import Authorization from "../Authorization";
 import {Link} from "react-router-dom";
+import {useIsAuthenticated} from "react-auth-kit";
 
 const Navbar = () => {
     const [isActive, setisActive] = React.useState(false);
+    const isAuthenticated = useIsAuthenticated()
     return (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -29,13 +31,14 @@ const Navbar = () => {
 
             <div id="navbarApp" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
                 <div className="navbar-start">
-                    <Link to={''} className="navbar-item">
-                        Home
+                    <Link to={'/'} className="navbar-item">
+                        Accueil
                     </Link>
-
-                    <Link to={''} className="navbar-item">
-                        Documentation
+                    { isAuthenticated() && (
+                    <Link to="/myshows" className="navbar-item">
+                        Mes séries
                     </Link>
+                    ) }
                 </div>
 
                 <div className="navbar-end">

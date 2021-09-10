@@ -18,7 +18,7 @@ function App() {
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/login' component={Login}/>
-                    <PrivateRoute exact path='/shows' component={Shows} loginPath={'/login'}/>
+                    <PrivateRoute exact path='/myshows' component={Shows} loginPath={'/login'}/>
                     <Route exact path='/' component={Home}/>
                 </Switch>
             </BrowserRouter>

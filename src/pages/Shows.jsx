@@ -19,7 +19,7 @@ const Shows = () => {
     return (
         <>
             <Navbar/>
-            <h1 className="has-text-centered is-size-2 mb-3">My shows list</h1>
+            <h1 className="has-text-centered is-size-2 mb-3">Mes séries</h1>
 
 
             <div className="container-fluid px-2">

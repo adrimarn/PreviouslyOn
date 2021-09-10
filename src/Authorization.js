@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import OAuth2Login from "react-simple-oauth2-login";
-import {useSignIn, useSignOut, useIsAuthenticated} from 'react-auth-kit'
+import {useSignIn, useIsAuthenticated} from 'react-auth-kit'
 import {fetchAPI} from "./services/FetchAPI";
 
 import ErrorAlert from './ErrorAlert';
@@ -9,11 +9,11 @@ import {
     clientId,
     redirectUri,
 } from './settings';
+import NavbarDropdown from "./components/NavbarDropdown";
 
 export default function Authorization(props) {
     const [error, setError] = useState(null);
     const signIn = useSignIn()
-    const signOut = useSignOut()
     const isAuthenticated = useIsAuthenticated()
 
     let userToken
@@ -59,9 +59,8 @@ export default function Authorization(props) {
 
                 />
             ) : (
-                <button className='button' onClick={() => signOut()}>Déconnexion</button>
-            )
-            }
+                <NavbarDropdown/>
+            )}
         </div>
     );
 }
