@@ -5,6 +5,7 @@ import Callback from "./pages/Callback";
 import {AuthProvider, PrivateRoute} from "react-auth-kit";
 import Login from "./pages/Login";
 import Shows from "./pages/Shows";
+import CheckTokenService from "./services/CheckToken";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                       cookieDomain={window.location.hostname}
         >
             <BrowserRouter>
+                <CheckTokenService/>
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/login' component={Login}/>

@@ -32,6 +32,13 @@ class FetchAPI {
         })
     }
 
+    getUserIsActive(params) {
+        return fetch(`${oauthServerUrl}/members/is_active`, {
+            method: 'GET',
+            headers: authHeader(params.token),
+        })
+    }
+
     getShowsMember(params) {
         let urlAPI
         if (params.id == null) {
@@ -43,6 +50,13 @@ class FetchAPI {
         return fetch(urlAPI, {
             method: 'GET',
             headers: authHeader(params.token),
+        })
+    }
+
+    getShow(params) {
+        return fetch(`${oauthServerUrl}/shows/display?id=${params.id}`, {
+            method: 'GET',
+            headers: authHeader(),
         })
     }
 }
