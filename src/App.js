@@ -6,6 +6,7 @@ import {AuthProvider, PrivateRoute} from "react-auth-kit";
 import Login from "./pages/Login";
 import Shows from "./pages/Shows";
 import CheckTokenService from "./services/CheckToken";
+import Show from "./pages/Show";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/login' component={Login}/>
                     <PrivateRoute exact path='/myshows' component={Shows} loginPath={'/login'}/>
+                    <PrivateRoute exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/' component={Home}/>
                 </Switch>
             </BrowserRouter>
