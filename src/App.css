@@ -1,7 +1,7 @@
 .show_card {
     transition: transform .2s; /* Animation */
     margin: 0 auto;
-    z-index: 9999;
+    z-index: 1;
 }
 
 .show_card:hover {
