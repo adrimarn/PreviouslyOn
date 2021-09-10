@@ -5,15 +5,8 @@
 }
 
 .show_card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     animation-name: show_card;
-    background-color: #b5b5b5;
     animation-duration: 1s;
-}
-@keyframes show_card {
-    from {background-color: #eeeeee
-    }
-    to {background-color: #b5b5b5
-    }
 }
 
