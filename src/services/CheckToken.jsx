@@ -12,7 +12,7 @@ function CheckTokenService() {
 
     const checkToken = () => fetchAPI.getUserIsActive({token: cookies._auth})
         .catch((error) => {
-            if (error.response.status === 400) {
+            if (error) {
                 signOut()
                 history.push("/login");
             }

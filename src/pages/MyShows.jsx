@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
 
@@ -26,7 +26,7 @@ const MyShows = () => {
             })
             .catch((error) => {
                 console.log(error)
-                history.push('/login');
+                //history.push('/login');
             });
     }, [history, token])
 

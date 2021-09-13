@@ -65,6 +65,13 @@ class FetchAPI {
             headers: authHeader(),
         })
     }
+
+    addShow(params) {
+        return fetch(`${oauthServerUrl}/shows/show?id=${params.id}`, {
+            method: 'POST',
+            headers: authHeader(params.token),
+        })
+    }
 }
 
 const fetchAPI = new FetchAPI();
