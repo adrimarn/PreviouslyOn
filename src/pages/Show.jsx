@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
 import Navbar from "../components/Navbar";
+import archiveShowButton from "../assets/images/archive.png";
 
 const Show = () => {
     const {id} = useParams();
@@ -30,10 +31,21 @@ const Show = () => {
                                 <div className="title is-5 has-text-centered mt-2 has-text-info">
                                     {show.title}
                                 </div>
-                                <div className="subtitle is-size-7 has-text-grey pl-2"><strong>Genre: </strong>
-                                    {Object.keys(show.genres).map((genre, index) => (
-                                        <span key={genre}>{(index ? ', ' : '') + genre}</span>
-                                    ))}
+                                <div className="columns">
+                                    <div className="subtitle is-size-7 has-text-grey pl-2 column is-6">
+                                        <strong>Genre: </strong>
+                                        {Object.keys(show.genres).map((genre, index) => (
+                                            <span key={genre}>{(index ? ', ' : '') + genre}</span>
+                                        ))}
+                                    </div>
+                                    <div className="subtitle is-size-7 column is-6 has-text-right">
+                                        <span className="mr-1">
+                                            Archiver la série
+                                        </span>
+                                        <Link to={''}>
+                                            <img src={archiveShowButton} alt="archive_img"/>
+                                        </Link>
+                                    </div>
                                 </div>
                                 <div className="card" style={{height: "auto"}}>
                                     <div className="card-image pt-1 pl-1 has-text-centered">
