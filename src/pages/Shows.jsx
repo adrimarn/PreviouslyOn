@@ -2,25 +2,21 @@ import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar";
 import {Link, useHistory} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
+import img from "../assets/images/add_show.svg";
+import {useIsAuthenticated} from "react-auth-kit";
+import AddShowButton from "../components/AddShowButton";
 import {useCookies} from "react-cookie";
-import img from "../assests/images/add_show.svg";
 
 const MyShows = () => {
-    const [isFetched, setFetch] = useState(false)
     const [cookies] = useCookies();
     const token = cookies._auth
+    const [isFetched, setFetch] = useState(false)
     const [shows, setShows] = useState([])
     const history = useHistory()
-
-    function addShow(id) {
-        return fetchAPI.addShow({token, id})
-            .then((res) => {
-                //
-            })
-    }
+    const isAuthenticated = useIsAuthenticated()
 
     useEffect(() => {
-        fetchAPI.getShows({order: 'popularity'})
+        fetchAPI.getShows({order: 'popularity', token})
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Something went wrong');
@@ -67,15 +63,9 @@ const MyShows = () => {
                                                     <div className="column ml-2">
                                                         <p className="is-size-7 has-text-left"> Note: {Math.floor(show.notes.mean)}</p>
                                                     </div>
-                                                    <div className="column mr-2">
-                                                        <Link to={''} className="bloop" onClick={(e) => {
-                                                            e.preventDefault();
-                                                            addShow(show.id);
-
-                                                        }}>
-                                                            <p className="has-text-right"><img
-                                                            className="add_show" src={img} alt="add_show"/></p></Link>
-                                                    </div>
+                                                    {isAuthenticated() &&
+                                                    <AddShowButton inAccount={show.in_account} id={show.id}/>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

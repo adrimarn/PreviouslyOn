@@ -21,7 +21,7 @@ function App() {
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/login' component={Login}/>
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
-                    <PrivateRoute exact path='/show/:id' component={Show} loginPath={'/login'}/>
+                    <Route exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/shows' component={Shows}/>
                     <Route exact path='/' component={Home}/>
                 </Switch>

@@ -55,20 +55,27 @@ class FetchAPI {
     getShow(params) {
         return fetch(`${oauthServerUrl}/shows/display?id=${params.id}`, {
             method: 'GET',
-            headers: authHeader(),
+            headers: authHeader(params.token),
         })
     }
 
     getShows(params) {
         return fetch(`${oauthServerUrl}/shows/list?order=${params.order}`, {
             method: 'GET',
-            headers: authHeader(),
+            headers: authHeader(params.token),
         })
     }
 
     addShow(params) {
         return fetch(`${oauthServerUrl}/shows/show?id=${params.id}`, {
             method: 'POST',
+            headers: authHeader(params.token),
+        })
+    }
+
+    removeShow(params) {
+        return fetch(`${oauthServerUrl}/shows/show?id=${params.id}`, {
+            method: 'DELETE',
             headers: authHeader(params.token),
         })
     }

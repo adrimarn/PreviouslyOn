@@ -10,8 +10,9 @@ const Show = () => {
     const [cookies] = useCookies();
     const [show, setShow] = useState([]);
     const token = cookies._auth;
+
     useEffect(() => {
-        fetchAPI.getShow({id})
+        fetchAPI.getShow({id, token})
             .then(res => res.json())
             .then((data => {
                 setShow(data.show)

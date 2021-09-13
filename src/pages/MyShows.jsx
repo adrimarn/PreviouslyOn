@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import {Link, useHistory} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
+import AddShowButton from "../components/AddShowButton";
 
 const MyShows = () => {
     const [isFetched, setFetch] = useState(false)
@@ -57,8 +58,9 @@ const MyShows = () => {
                                                 <p className="is-size-7 pl-2">{show.description.substring(0, 150)}...</p>
                                                 <div className="columns is-gapless">
                                                     <div className="column ml-2">
-                                                        <p className="is-size-7 has-text-right pr-2"> Note: {Math.floor(show.notes.mean)}</p>
+                                                        <p className="is-size-7 pr-2"> Note: {Math.floor(show.notes.mean)}</p>
                                                     </div>
+                                                    <AddShowButton inAccount={show.in_account} id={show.id}/>
                                                 </div>
                                             </div>
                                         </div>
