@@ -9,14 +9,13 @@ const Navbar = () => {
     return (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <Link className="navbar-item" to="/">
-                    <img src="https://bulma.io/images/bulma-logo-white.png" width="112" height="28" alt='Logo'/>
-                </Link>
+                <span className="navbar-item has-text-weight-bold">PreviouslyOn</span>
                 <Link
-                    onClick={() => {
+                    to={''}
+                    onClick={(e) => {
+                        e.preventDefault();
                         setisActive(!isActive);
                     }}
-                    to={''}
                     role="button"
                     className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
                     aria-label="menu"
