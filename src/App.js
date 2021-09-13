@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import MyShows from "./pages/MyShows";
 import CheckTokenService from "./services/CheckToken";
 import Show from "./pages/Show";
+import Shows from "./pages/Shows";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route exact path='/login' component={Login}/>
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
                     <PrivateRoute exact path='/show/:id' component={Show} loginPath={'/login'}/>
+                    <Route exact path='/shows' component={Shows}/>
                     <Route exact path='/' component={Home}/>
                 </Switch>
             </BrowserRouter>
