@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
 import Navbar from "../components/Navbar";
-import archiveShowButton from "../assets/images/archive.png";
+import ArchiveLink from "../components/ArchiveLink";
 
 const Show = () => {
     const {id} = useParams();
     const [isFetched, setFetch] = useState(false)
     const [cookies] = useCookies();
-    const [show, setShow] = useState([]);
     const token = cookies._auth;
+    const [show, setShow] = useState([]);
 
     useEffect(() => {
         fetchAPI.getShow({id, token})
@@ -20,6 +20,7 @@ const Show = () => {
                 setFetch(true)
             }))
     }, [token, id])
+
     return (
         <>
             <Navbar/>
@@ -39,12 +40,8 @@ const Show = () => {
                                         ))}
                                     </div>
                                     <div className="subtitle is-size-7 column is-6 has-text-right">
-                                        <span className="mr-1">
-                                            Archiver la série
-                                        </span>
-                                        <Link to={''}>
-                                            <img src={archiveShowButton} alt="archive_img"/>
-                                        </Link>
+                                        <ArchiveLink id={show.id} isArchived={show.user.archived}
+                                                     inAccount={show.in_account}/>
                                     </div>
                                 </div>
                                 <div className="card" style={{height: "auto"}}>

@@ -79,6 +79,20 @@ class FetchAPI {
             headers: authHeader(params.token),
         })
     }
+
+    archiveShow(params) {
+        return fetch(`${oauthServerUrl}/shows/archive?id=${params.id}`, {
+            method: 'POST',
+            headers: authHeader(params.token),
+        })
+    }
+
+    unarchiveShow(params) {
+        return fetch(`${oauthServerUrl}/shows/archive?id=${params.id}`, {
+            method: 'DELETE',
+            headers: authHeader(params.token),
+        })
+    }
 }
 
 const fetchAPI = new FetchAPI();
