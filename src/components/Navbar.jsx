@@ -34,6 +34,9 @@ const Navbar = () => {
                     <Link to={'/'} className="navbar-item">
                         Accueil
                     </Link>
+                    <Link to={'/shows'} className="navbar-item">
+                        Liste des séries
+                    </Link>
                     { isAuthenticated() && (
                     <Link to="/myshows" className="navbar-item">
                         Mes séries
