@@ -58,6 +58,13 @@ class FetchAPI {
             headers: authHeader(),
         })
     }
+
+    getShows(params) {
+        return fetch(`${oauthServerUrl}/shows/list?order=${params.order}`, {
+            method: 'GET',
+            headers: authHeader(),
+        })
+    }
 }
 
 const fetchAPI = new FetchAPI();
