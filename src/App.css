@@ -10,3 +10,7 @@
     animation-duration: 1s;
 }
 
+.add_show:hover {
+    background-color: #d0faea;
+}
+
