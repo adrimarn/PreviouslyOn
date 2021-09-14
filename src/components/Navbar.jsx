@@ -7,7 +7,7 @@ const Navbar = () => {
     const [isActive, setisActive] = React.useState(false);
     const isAuthenticated = useIsAuthenticated()
     return (
-        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-info" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <span className="navbar-item has-text-weight-bold">PreviouslyOn</span>
                 <Link
@@ -36,17 +36,17 @@ const Navbar = () => {
                     <Link to={'/shows'} className="navbar-item">
                         Liste des séries
                     </Link>
-                    { isAuthenticated() && (
-                    <Link to="/myshows" className="navbar-item">
-                        Mes séries
-                    </Link>
-                    ) }
+                    {isAuthenticated() && (
+                        <Link to="/myshows" className="navbar-item">
+                            Mes séries
+                        </Link>
+                    )}
                 </div>
 
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <Authorization className='button is-primary'/>
+                            <Authorization className='button is-light is-outlined'/>
                         </div>
                     </div>
                 </div>
