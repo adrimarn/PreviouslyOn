@@ -2,6 +2,7 @@ import React from 'react';
 import AddShowButton from "./AddShowButton";
 import {Link} from "react-router-dom";
 import {useIsAuthenticated} from "react-auth-kit";
+import StarRatingComponent from "react-star-rating-component";
 
 const ShowCard = ({show}) => {
     const isAuthenticated = useIsAuthenticated()
@@ -23,8 +24,13 @@ const ShowCard = ({show}) => {
                     <div>
                         <p className="is-size-7 pl-2">{show.description.substring(0, 150)}...</p>
                         <div className="columns is-gapless">
-                            <div className="column ml-2">
-                                <p className="is-size-7 has-text-left"> Note: {Math.floor(show.notes.mean)}</p>
+                            <div className="ml-2">
+                                <StarRatingComponent
+                                    name="score"
+                                    editing={false}
+                                    starCount={5}
+                                    value={Math.floor(show.notes.mean)}
+                                />
                             </div>
                             {isAuthenticated() &&
                             <AddShowButton inAccount={show.in_account} id={show.id}/>

@@ -5,7 +5,7 @@ import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
 import ShowCard from "../components/ShowCard";
 
-const MyShows = () => {
+const Shows = () => {
     const [cookies] = useCookies();
     const token = cookies._auth
     const [isFetched, setFetch] = useState(false)
@@ -52,4 +52,4 @@ const MyShows = () => {
         </>
     );
 };
-export default MyShows;
+export default Shows;
