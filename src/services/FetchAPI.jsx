@@ -69,6 +69,7 @@ class FetchAPI {
      * Retrieve shows from member
      * @param {Object} params
      * @param {string} [params.id] - User ID (optional)
+     * @param {'alphabetical', 'popularity', 'followers'} params.order - Print order
      * @param {string} params.token - Token of the authenticated user
      */
     getShowsMember(params) {

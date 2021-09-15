@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
 import ShowCard from "../components/ShowCard";
+import Loading from "../components/Loading";
 
 const MyShows = () => {
     const [isFetched, setFetch] = useState(false)
@@ -46,7 +47,7 @@ const MyShows = () => {
                         ))}
                     </div>
                 ) : (
-                    <p>CHARGEMENT...</p>
+                    <Loading color="#4FABFF"/>
                 )}
             </div>
         </>

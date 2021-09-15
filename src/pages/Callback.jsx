@@ -1,8 +1,9 @@
 import React from 'react';
+import Loading from "../components/Loading";
 
 const Callback = () => (
     <div className="container">
-        <h4>Loading...</h4>
+        <Loading color="#4FABFF"/>
     </div>
 );
 
