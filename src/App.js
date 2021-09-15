@@ -8,6 +8,7 @@ import MyShows from "./pages/MyShows";
 import CheckTokenService from "./services/CheckToken";
 import Show from "./pages/Show";
 import Shows from "./pages/Shows";
+import Friends from "./pages/Friends";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
                     <Route exact path='/login' component={Login}/>
+                    <PrivateRoute exact path='/friends' component={Friends} loginPath={'/login'}/>
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
                     <Route exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/shows' component={Shows}/>

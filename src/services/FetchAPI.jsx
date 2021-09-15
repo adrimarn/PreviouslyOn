@@ -32,10 +32,13 @@ class FetchAPI {
     /**
      * Retrieve user info
      * @param {Object} params
+     * @param [params.id] - User ID (optional)
      * @param {string} params.token - Token of the authenticated user
      */
     getUserInfo(params) {
-        return fetch(`${oauthServerUrl}/members/infos`, {
+        let queryParam
+        params.id ? queryParam = `?id=${params.id}` : queryParam = '';
+        return fetch(`${oauthServerUrl}/members/infos${queryParam}`, {
             method: 'GET',
             headers: authHeader(params.token),
         })

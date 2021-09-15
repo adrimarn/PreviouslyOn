@@ -37,12 +37,16 @@ const Navbar = () => {
                         Liste des séries
                     </Link>
                     {isAuthenticated() && (
-                        <Link to="/myshows" className="navbar-item">
-                            Mes séries
-                        </Link>
+                        <>
+                            <Link to="/myshows" className="navbar-item">
+                                Mes séries
+                            </Link>
+                            <Link to="/friends" className="navbar-item">
+                                Mes amis
+                            </Link>
+                        </>
                     )}
                 </div>
-
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
