@@ -26,8 +26,8 @@ const Friends = () => {
                 res.users.map((user) => {
                     return fetchAPI.getUserInfo({id: user.id, token})
                         .then(res => res.json())
-                        .then(data => {
-                            setFriends([data.member])
+                        .then((data) => {
+                            setFriends(old => [...old, data.member])
                         })
                 })
                 setFetch(true)
@@ -53,7 +53,7 @@ const Friends = () => {
                                         <div className="media">
                                             <div className="media-left">
                                                 <figure className="image is-48x48">
-                                                    <img src={user.avatar}
+                                                    <img src={user.avatar ?? `https://eu.ui-avatars.com/api/?name=${user.login}`}
                                                          alt="friend_img"/>
                                                 </figure>
                                             </div>

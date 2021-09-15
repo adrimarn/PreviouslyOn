@@ -10,7 +10,7 @@ const NavbarDropdown = () => {
         <div className='navbar-item'>
             <div className="avatar is-hidden-touch">
                 <img
-                    src={`${auth().user.avatar}`}
+                    src={`${auth().user.avatar ?? `https://eu.ui-avatars.com/api/?name=${auth().user.login}`}`}
                     width="28" height="28" alt={`Avatar de ${auth().user.login}`}/>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
