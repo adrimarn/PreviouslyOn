@@ -59,7 +59,7 @@ class FetchAPI {
      * @param {string} params.token - Token of the authenticated user
      */
     getUserEmail(params) {
-        return fetch(`${oauthServerUrl}m/members/email`, {
+        return fetch(`${oauthServerUrl}/members/email`, {
             method: 'GET',
             headers: authHeader(params.token),
         })
