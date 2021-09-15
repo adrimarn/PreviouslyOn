@@ -10,7 +10,7 @@ function CheckTokenService() {
     const history = useHistory();
     const [cookies] = useCookies()
 
-    const checkToken = () => fetchAPI.getUserIsActive({token: cookies._auth})
+    const checkToken = () => fetchAPI.getUserEmail({token: cookies._auth})
         .catch((error) => {
             if (error) {
                 signOut()

@@ -54,9 +54,21 @@ class FetchAPI {
     }
 
     /**
+     * Retrieve email from user auth
+     * @param {Object} params
+     * @param {string} params.token - Token of the authenticated user
+     */
+    getUserEmail(params) {
+        return fetch(`${oauthServerUrl}m/members/email`, {
+            method: 'GET',
+            headers: authHeader(params.token),
+        })
+    }
+
+    /**
      * Retrieve shows from member
      * @param {Object} params
-     * @param {string} params.id - User ID (optional)
+     * @param {string} [params.id] - User ID (optional)
      * @param {string} params.token - Token of the authenticated user
      */
     getShowsMember(params) {
@@ -76,7 +88,7 @@ class FetchAPI {
      * Retrieve show by ID
      * @param {Object} params
      * @param {string} params.id - Show ID
-     * @param {string} params.token - Token of the authenticated user (optional)
+     * @param {string} [params.token] - Token of the authenticated user (optional)
      */
     getShow(params) {
         return fetch(`${oauthServerUrl}/shows/display?id=${params.id}`, {
@@ -86,10 +98,10 @@ class FetchAPI {
     }
 
     /**
-     * Retrieve shows from member
+     * Retrieve shows
      * @param {Object} params
      * @param {'alphabetical', 'popularity', 'followers'} params.order - Print order
-     * @param {string} params.token - Token of the authenticated user
+     * @param {string} [params.token] - Token of the authenticated user (optional)
      */
     getShows(params) {
         return fetch(`${oauthServerUrl}/shows/list?order=${params.order}`, {
@@ -153,7 +165,7 @@ class FetchAPI {
     /**
      * Retrieve friends list
      * @param {Object} params
-     * @param {string} params.id - Member ID (optional)
+     * @param {string} [params.id] - Member ID (optional)
      * @param {string} params.token - Token of the authenticated user
      */
     getFriendsList(params) {
@@ -184,7 +196,7 @@ class FetchAPI {
     /**
      * Retrieve friends request sent by user
      * @param {Object} params
-     * @param {bool} params.received - Set 'true' for retrieve requests received
+     * @param {bool} [params.received] - Set 'true' for retrieve requests received
      * @param {string} params.token - Token of the authenticated user
      */
     getFriendsRequests(params) {
@@ -238,6 +250,7 @@ class FetchAPI {
     /**
      * Block a friend
      * @param {Object} params
+     * @param {string} params.id - User ID
      * @param {string} params.token - Token of the authenticated user
      */
     blockFriend(params) {
@@ -250,6 +263,7 @@ class FetchAPI {
     /**
      * Unblock a friend
      * @param {Object} params
+     * @param {string} params.id - User ID
      * @param {string} params.token - Token of the authenticated user
      */
     unblockFriend(params) {
