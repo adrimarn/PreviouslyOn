@@ -2,14 +2,17 @@ import React from 'react';
 import Authorization from "../Authorization";
 import {Link} from "react-router-dom";
 import {useIsAuthenticated} from "react-auth-kit";
+import logo from "../assets/images/previouslyon-logo.png"
 
 const Navbar = () => {
     const [isActive, setisActive] = React.useState(false);
     const isAuthenticated = useIsAuthenticated()
     return (
-        <nav className="navbar is-info" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <span className="navbar-item has-text-weight-bold">PreviouslyOn</span>
+                <a className="navbar-item" href="https://bulma.io">
+                    <img src={logo} width="112" height="28" alt='PreviouslyOn'/>
+                </a>
                 <Link
                     to={''}
                     onClick={(e) => {
@@ -50,7 +53,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <Authorization className='button is-light is-outlined'/>
+                            <Authorization className='header__sign-in'/>
                         </div>
                     </div>
                 </div>

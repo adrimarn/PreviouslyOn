@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import OAuth2Login from "react-simple-oauth2-login";
-import {useSignIn, useIsAuthenticated} from 'react-auth-kit'
+import {useSignIn, useIsAuthenticated, useAuthUser} from 'react-auth-kit'
 import {fetchAPI} from "./services/FetchAPI";
 
 import ErrorAlert from './ErrorAlert';
@@ -10,6 +10,7 @@ import {
     redirectUri,
 } from './settings';
 import NavbarDropdown from "./components/NavbarDropdown";
+import {toast} from "react-hot-toast";
 
 export default function Authorization(props) {
     const [error, setError] = useState(null);
@@ -36,7 +37,17 @@ export default function Authorization(props) {
                 tokenType: "Bearer",
                 authState: {user: user.member},
             })) {
-                // Redirect or do-something
+                toast(`Bonjour ${user.member.login} !`,
+                    {
+                        icon: '👋',
+                        style: {
+                            borderRadius: '10px',
+                            background: '#2b2b30',
+                            color: '#fff',
+                            border: '1px solid #d64356',
+                        },
+                    }
+                );
             }
         })
 

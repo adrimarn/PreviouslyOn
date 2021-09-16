@@ -29,27 +29,29 @@ const Show = () => {
                     {isFetched && (
                         <div className="columns is-variable is-2-desktop is-centered">
                             <div className="column is-8 is-centered">
-                                <div className="title is-5 has-text-centered mt-2 has-text-info">
+                                <h1 className="section__title_wl is-size-2 has-text-centered mt-2">
                                     {show.title}
-                                </div>
+                                </h1>
                                 <div className="columns">
-                                    <div className="subtitle is-size-7 has-text-grey pl-2 column is-6">
-                                        <strong>Genre: </strong>
-                                        {Object.keys(show.genres).map((genre, index) => (
-                                            <span key={genre}>{(index ? ', ' : '') + genre}</span>
-                                        ))}
+                                    <div className="is-size-7 has-text-white pl-2 column is-6">
+                                        <span className='has-text-weight-bold'>Genre: </span>
+                                        <span className='text_gradient'>
+                                            {Object.keys(show.genres).map((genre, index) => (
+                                                <span key={genre}>{(index ? ', ' : '') + genre}</span>
+                                            ))}
+                                        </span>
                                     </div>
-                                    <div className="subtitle is-size-7 column is-6 has-text-right">
+                                    <div className="text_primary is-size-7 column is-6 has-text-right">
                                         <ArchiveLink id={show.id} isArchived={show.user.archived}
                                                      inAccount={show.in_account}/>
                                     </div>
                                 </div>
-                                <div className="card" style={{height: "auto"}}>
+                                <div style={{height: "auto"}}>
                                     <div className="card-image pt-1 pl-1 has-text-centered">
                                         <img src={show.images.show} alt=""/>
                                     </div>
                                     <div className="content">
-                                        <h2 className="subtitle is-size-5 has-text-centered">Résumé</h2>
+                                        <h2 className="section__subtitle is-size-5 has-text-centered">Résumé</h2>
                                         <p className="is-size-7 pl-2">{show.description}</p>
                                         <div className="columns is-gapless">
                                             <div className="column">

@@ -3,6 +3,7 @@ import addShowImg from "../assets/images/add_show.svg";
 import removeShowImg from "../assets/images/remove_show.svg";
 import {fetchAPI} from "../services/FetchAPI";
 import {useCookies} from "react-cookie";
+import {toast} from "react-hot-toast";
 
 const AddShowButton = (props) => {
     const [cookies] = useCookies();
@@ -14,6 +15,16 @@ const AddShowButton = (props) => {
             .then(res => {
                 if (res.ok) {
                     setInAccount(true)
+                    toast.success('Série ajoutée',
+                        {
+                            style: {
+                                borderRadius: '10px',
+                                background: '#2b2b30',
+                                color: '#fff',
+                                border: '1px solid #d64356',
+                            },
+                        }
+                    );
                 }
             })
     }
@@ -23,6 +34,17 @@ const AddShowButton = (props) => {
             .then(res => {
                 if (res.ok) {
                     setInAccount(false)
+                    toast('Série supprimée',
+                        {
+                            icon: '🚫',
+                            style: {
+                                borderRadius: '10px',
+                                background: '#2b2b30',
+                                color: '#fff',
+                                border: '1px solid #d64356',
+                            },
+                        }
+                    );
                 }
             })
     }

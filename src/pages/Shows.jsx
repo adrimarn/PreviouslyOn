@@ -35,21 +35,23 @@ const Shows = () => {
     return (
         <>
             <Navbar/>
-            <h1 className="has-text-centered is-size-2 mb-3">Liste des séries</h1>
-            <div className="container-fluid px-2">
-                {isFetched ? (
-                    <div className="columns is-multiline">
-                        {shows.map((show) => (
-                            <div key={show.id} className="column is-3-desktop is-full-mobile is-6-tablet ">
-                                <ShowCard show={show}/>
-                            </div>
+            <section className="section">
+                <h1 className="has-text-centered is-size-2 mb-3 section__title">Liste des séries</h1>
+                <div className="container-fluid px-2">
+                    {isFetched ? (
+                        <div className="columns is-multiline">
+                            {shows.map((show) => (
+                                <div key={show.id} className="column is-3-desktop is-full-mobile is-6-tablet ">
+                                    <ShowCard show={show}/>
+                                </div>
 
-                        ))}
-                    </div>
-                ) : (
-                    <Loading color="#4FABFF"/>
-                )}
-            </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <Loading color="#F15154"/>
+                    )}
+                </div>
+            </section>
         </>
     );
 };

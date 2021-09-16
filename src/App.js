@@ -9,6 +9,7 @@ import CheckTokenService from "./services/CheckToken";
 import Show from "./pages/Show";
 import Shows from "./pages/Shows";
 import Friends from "./pages/Friends";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                       cookieDomain={window.location.hostname}
         >
             <BrowserRouter>
+                <Toaster/>
                 <CheckTokenService/>
                 <Switch>
                     <Route exact path='/callback' component={Callback}/>
