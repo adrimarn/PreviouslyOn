@@ -14,7 +14,7 @@ function Loading({color ='#505050'}) {
 
     return (
         <div className="sweet-loading">
-            <PulseLoader color={color} css={override} margin='14' size='17' speedMultiplier='0.5'/>
+            <PulseLoader color={color} css={override} margin='14px' size='17px' speedMultiplier='0.5'/>
         </div>
     );
 }

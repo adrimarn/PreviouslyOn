@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import OAuth2Login from "react-simple-oauth2-login";
-import {useSignIn, useIsAuthenticated, useAuthUser} from 'react-auth-kit'
+import {useSignIn, useIsAuthenticated} from 'react-auth-kit'
 import {fetchAPI} from "./services/FetchAPI";
 
 import ErrorAlert from './ErrorAlert';
