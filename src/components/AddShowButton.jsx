@@ -22,7 +22,7 @@ const AddShowButton = (props) => {
             {
                 loading: 'Ajout...',
                 success: <b>Série ajoutée</b>,
-                error: <b>Échec de l'ajout'</b>,
+                error: <b>Échec de l'ajout</b>,
             }, {
                 style: {
                     borderRadius: '10px',

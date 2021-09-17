@@ -112,19 +112,19 @@ button.header__sign-in {
 }
 
 @media screen and (min-width: 1024px) {
-    .navbar-start > a.navbar-item {
+    .navbar-start > a.navbar-item, a.navbar-link {
         color:rgba(255,255,255,0.75)!important
     }
 }
 
-a.navbar-item {
+a.navbar-item, a.navbar-link {
     font-size:14px;
     font-weight:300;
     letter-spacing:.3px;
     text-transform:uppercase
 }
 
-a.navbar-item:hover {
+a.navbar-item:hover, a.navbar-link:hover {
     background-color:transparent!important;
     color:#f83666!important
 }

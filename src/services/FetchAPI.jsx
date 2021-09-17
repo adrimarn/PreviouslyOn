@@ -191,7 +191,7 @@ class FetchAPI {
      * @param {string} params.token - Token of the authenticated user
      */
     getBlockedFriends(params) {
-        return fetch(`${oauthServerUrl}/friends/list?blocked`, {
+        return fetch(`${oauthServerUrl}/friends/list?blocked=true`, {
             method: 'GET',
             headers: authHeader(params.token),
         })
