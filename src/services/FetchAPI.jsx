@@ -205,7 +205,7 @@ class FetchAPI {
      */
     getFriendsRequests(params) {
         let queryParam
-        params.received ? queryParam = '?received' : queryParam = '';
+        params.received ? queryParam = '?received=true' : queryParam = '';
 
         return fetch(`${oauthServerUrl}/friends/requests${queryParam}`, {
             method: 'GET',
