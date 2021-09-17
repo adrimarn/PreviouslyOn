@@ -39,12 +39,14 @@ const FriendCard = ({
                             </p>
                         </div>
                         <div className="has-text-right buttons">
-                            <button className={primaryClassName}
-                                    onClick={primaryCallback}>
+                            {primaryCallback && (
+                                <button className={primaryClassName}
+                                        onClick={primaryCallback}>
                           <span className="icon is-small mr-0">
                             <FontAwesomeIcon icon={primaryIcon}/>
                           </span> {primaryText}
-                            </button>
+                                </button>
+                            )}
                             {secondaryCallback && (
                                 <button className={secondaryClassName}
                                         onClick={secondaryCallback}>

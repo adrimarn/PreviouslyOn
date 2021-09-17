@@ -1,28 +1,41 @@
 import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar";
-import {faBan, faCheck, faCheckSquare, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {fetchAPI} from "../services/FetchAPI";
 import FriendCard from "../components/FriendCard";
+import {useCookies} from "react-cookie";
+import Loading from "../components/Loading";
 
 
 const SearchMember = () => {
+    const [cookies] = useCookies();
+    const token = cookies._auth;
     const [needle, setNeedle] = useState('');
     const [users, setUsers] = useState(null);
     const [isFetched, setFetch] = useState(false);
+    const [isFetching, setFetching] = useState(false);
+    const [isTyping, setTyping] = useState(false);
 
     useEffect(() => {
-        if (needle.length > 2) {
-            fetchAPI.searchMember({login: needle})
-                .then(res => res.json())
-                .then((data) => {
-                    setUsers(data.users)
-                    setFetch(true)
-                })
-        }
-    }, [needle])
+        const stopTyping = setTimeout(() => {
+            setTyping(false)
+            if (needle.length > 2) {
+                setFetching(true)
+                fetchAPI.searchMember({login: needle, token})
+                    .then(res => res.json())
+                    .then((data) => {
+                        setUsers(data.users)
+                        setFetch(true)
+                        setFetching(false)
+                    })
+            }
+        }, 500);
+        return () => clearTimeout(stopTyping);
+    }, [needle, token])
 
     const handleSearch = (needle) => {
+        setTyping(true)
         return setNeedle(needle)
     }
 
@@ -44,27 +57,31 @@ const SearchMember = () => {
                         </div>
                     </div>
                 </div>
-                {isFetched && (
-                    <div className='mt-6'>
-                        {users.length !== 0 ?
-                            users.map((user) => (
-                                <FriendCard user={user}
-                                            primaryCallback={''}
-                                            primaryIcon={faCheck}
-                                            primaryText='Ajouter en ami'
-                                            primaryClassName='button is-outlined'
-                                />
-                            ))
-                            : (
-                                    needle.length !== 0 && (
+                {isFetching ? (
+                    <Loading color="#F15154"/>
+                ) : (
+                    isFetched && (
+                        <div className='mt-6'>
+                            {users.length !== 0 ?
+                                users.map((user) => (
+                                    <FriendCard user={user}
+                                                primaryCallback={''}
+                                                primaryIcon={faUser}
+                                                primaryText='Ajouter en ami'
+                                                primaryClassName='button is-outlined'
+                                    />
+                                ))
+                                : (
+                                    needle.length > 2 && isTyping === false && (
                                         <p className='has-text-centered'>Aucun utilisateur correspondant à {needle}</p>
                                     )
-                            )
-                        }
-                            </div>)}
-                    </section>
-                    </>
-                    );
-                };
+                                )
+                            }
+                        </div>
+                    ))}
+            </section>
+        </>
+    );
+};
 
-                export default SearchMember;
+export default SearchMember;
