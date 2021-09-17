@@ -33,6 +33,7 @@ const FriendRequest = () => {
                 }
             })
             .then((res) => {
+                setFriends([])
                 res.users.map((user) => {
                     return fetchAPI.getUserInfo({id: user.id, token})
                         .then(res => res.json())

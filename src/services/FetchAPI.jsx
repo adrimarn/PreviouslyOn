@@ -279,6 +279,19 @@ class FetchAPI {
         })
     }
 
+    /**
+     * Search a member
+     * @param {Object} params
+     * @param {string} params.login - User name
+     * @param {string} [params.token] - Token of the authenticated user (optional)
+     */
+    searchMember(params) {
+            return fetch(`${oauthServerUrl}/members/search?login=%${params.login}%`, {
+                method: 'GET',
+                headers: authHeader(params.token),
+            })
+    }
+
 
 }
 

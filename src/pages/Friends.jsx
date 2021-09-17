@@ -86,6 +86,7 @@ const Friends = () => {
                 }
             })
             .then((res) => {
+                setFriends([])
                 res.users.map((user) => {
                     return fetchAPI
                         .getUserInfo({id: user.id, token})
