@@ -18,6 +18,9 @@ const NavbarDropdown = () => {
                     {auth().user.login}
                 </div>
                 <div className="navbar-dropdown is-boxed">
+                    <Link className="navbar-item" to={'/profile'}>
+                        Mon profil
+                    </Link>
                     <Link className="navbar-item" to={''}>
                         Paramètres
                     </Link>

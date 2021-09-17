@@ -11,42 +11,51 @@ const AddShowButton = (props) => {
     const [inAccount, setInAccount] = useState(props.inAccount)
 
     function addShow(id) {
-        return fetchAPI.addShow({token, id})
-            .then(res => {
-                if (res.ok) {
-                    setInAccount(true)
-                    toast.success('Série ajoutée',
-                        {
-                            style: {
-                                borderRadius: '10px',
-                                background: '#2b2b30',
-                                color: '#fff',
-                                border: '1px solid #d64356',
-                            },
+        return toast.promise(
+            fetchAPI.addShow({token, id})
+                .then((res => {
+                        if (res.ok) {
+                            setInAccount(true)
                         }
-                    );
-                }
-            })
+                    })
+                ),
+            {
+                loading: 'Ajout...',
+                success: <b>Série ajoutée</b>,
+                error: <b>Échec de l'ajout'</b>,
+            }, {
+                style: {
+                    borderRadius: '10px',
+                    background: '#2b2b30',
+                    color: '#fff',
+                    border: '1px solid #d64356',
+                },
+            }
+        );
     }
 
     function removeShow(id) {
-        return fetchAPI.removeShow({token, id})
-            .then(res => {
-                if (res.ok) {
-                    setInAccount(false)
-                    toast('Série supprimée',
-                        {
-                            icon: '🚫',
-                            style: {
-                                borderRadius: '10px',
-                                background: '#2b2b30',
-                                color: '#fff',
-                                border: '1px solid #d64356',
-                            },
+        return toast.promise(
+            fetchAPI.removeShow({token, id})
+                .then((res => {
+                        if (res.ok) {
+                            setInAccount(false)
                         }
-                    );
-                }
-            })
+                    })
+                ),
+            {
+                loading: 'Suppression...',
+                success: <b>Série supprimée</b>,
+                error: <b>Échec de la suppression</b>,
+            }, {
+                style: {
+                    borderRadius: '10px',
+                    background: '#2b2b30',
+                    color: '#fff',
+                    border: '1px solid #d64356',
+                },
+            }
+        );
     }
 
     return (

@@ -9,6 +9,8 @@ import CheckTokenService from "./services/CheckToken";
 import Show from "./pages/Show";
 import Shows from "./pages/Shows";
 import Friends from "./pages/Friends";
+import Profile from "./pages/Profile";
+
 import {Toaster} from "react-hot-toast";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
                     <Route exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/shows' component={Shows}/>
+                    <PrivateRoute exact path='/profile' component={Profile} loginPath={'/login'}/>
                     <Route exact path='/' component={Home}/>
                 </Switch>
             </BrowserRouter>

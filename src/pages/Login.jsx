@@ -12,7 +12,7 @@ const Login = () => {
             <div className="columns">
                 <div className="column"/>
                 <div className="column is-three-quarters">
-                    <h1 className='is-size-2 section__title'>Vous devez vous identifier pour continuer</h1>
+                    <h1 className='is-size-2 section__title_wl'>Vous devez vous identifier pour continuer</h1>
                     <Authorization buttonText="S'identifier sur betaseries"
                                    className='button is-medium is-info is-fullwidth'/>
                 </div>

@@ -45,6 +45,7 @@ h1,p {
 h1.section__title {
     font-weight:200;
     margin-top:10px;
+    text-align: center;
     position:relative
 }
 
@@ -52,6 +53,7 @@ h1.section__title_wl {
     font-weight:200;
     margin-bottom:15px;
     margin-top:10px;
+    text-align: center;
     position:relative
 }
 
@@ -148,4 +150,30 @@ a.navbar-item:hover {
 
 .friend_card .title {
     color: rgba(255, 255, 255, 0.7);
+}
+
+.profile__bg {
+    position: absolute;
+    display: block;
+    top: 50px;
+    right: 0;
+    left: 0;
+    height: 400px;
+    z-index: 1;
+    opacity: .09;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+}
+
+.profile__bg:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(43,43,49,0) 0%, #2b2b30 100%);
 }
