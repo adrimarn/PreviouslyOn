@@ -12,6 +12,7 @@ import Friends from "./pages/Friends";
 import Profile from "./pages/Profile";
 import {Toaster} from "react-hot-toast";
 import FriendRequest from "./pages/FriendRequest";
+import SearchMember from "./pages/SearchMember";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                     <Route exact path='/login' component={Login}/>
                     <PrivateRoute exact path='/friends' component={Friends} loginPath={'/login'}/>
                     <PrivateRoute exact path='/friends/request' component={FriendRequest} loginPath={'/login'}/>
+                    <PrivateRoute exact path='/search' component={SearchMember} loginPath={'/login'}/>
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
                     <Route exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/shows' component={Shows}/>
