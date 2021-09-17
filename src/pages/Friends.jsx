@@ -45,10 +45,10 @@ const Friends = () => {
             <div className="container">
                 {isFetched && (
                     <div>
+                        <h1 className="is-size-3 has-text-centered mb-3">Mes amis</h1>
                         {friends.map((user) => (
                             <div key={user.id}>
-                                <h1 className="is-size-3 has-text-centered mb-3">Mes amis</h1>
-                                <div className="card">
+                                <div className="card mb-3">
                                     <div className="card-content">
                                         <div className="media">
                                             <div className="media-left">
