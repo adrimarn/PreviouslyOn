@@ -7,9 +7,9 @@ const Welcome = () => {
     const isAuthenticated = useIsAuthenticated()
 
     if (isAuthenticated()) {
-        return <p>Bonjour {auth().user.login} ({auth().user.id})</p>
+        return <h1>Bonjour {auth().user.login} 👋</h1>
     } else {
-        return <p>Bonjour</p>
+        return ''
     }
 }
 
@@ -18,12 +18,13 @@ const Home = () => {
         <>
             <Navbar/>
             <section className="section">
-                <div className="container">
-                    <h1 className="title">
+                <div className="container has-text-centered py-6">
+                    <div className="title is-size-6 ">
                         <Welcome/>
-                    </h1>
-                    <p className="subtitle">
-                        My first website with <strong>Bulma</strong>!
+                    </div>
+                    <p className="has-text-white is-size-3 ">
+                        Retrouve toutes tes séries préférées
+                        <p className='is-size-2'>sur Previously<span className='text_gradient'>ON</span></p>
                     </p>
                 </div>
             </section>

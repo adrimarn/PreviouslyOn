@@ -200,7 +200,7 @@ class FetchAPI {
     /**
      * Retrieve friends request sent by user
      * @param {Object} params
-     * @param {bool} [params.received] - Set 'true' for retrieve requests received
+     * @param {boolean} [params.received] - Set 'true' for retrieve requests received
      * @param {string} params.token - Token of the authenticated user
      */
     getFriendsRequests(params) {
@@ -242,6 +242,7 @@ class FetchAPI {
     /**
      * Removing a friend
      * @param {Object} params
+     * @param {string} params.id - User ID
      * @param {string} params.token - Token of the authenticated user
      */
     removeFriend(params) {

@@ -139,3 +139,13 @@ a.navbar-item:hover {
 .header__sign-in:hover {
     opacity:1
 }
+
+.friend_card {
+    position: relative;
+    border-radius: 2px;
+    border: 1px dashed rgba(214, 67, 86, 0.5);
+}
+
+.friend_card .title {
+    color: rgba(255, 255, 255, 0.7);
+}
