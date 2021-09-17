@@ -230,6 +230,7 @@ class FetchAPI {
     /**
      * Adding a friend
      * @param {Object} params
+     * @param {string} params.id - User ID
      * @param {string} params.token - Token of the authenticated user
      */
     addFriend(params) {
