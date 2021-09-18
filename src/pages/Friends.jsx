@@ -40,22 +40,22 @@ const Friends = () => {
     function blockFriend(id) {
         return fetchAPI.blockFriend({id, token})
             .then(res => res.json())
-                .then((data) => {
-                    const newList = friends.filter((item) => item.id !== id);
-                    setBlocked((old) => [...old, data.member])
-                    setFriends(newList);
-                    toast('Utilisateur bloqué',
-                        {
-                            icon: '🚫',
-                            style: {
-                                borderRadius: '10px',
-                                background: '#2b2b30',
-                                color: '#fff',
-                                border: '1px solid #d64356',
-                            },
-                        }
-                    );
-                })
+            .then((data) => {
+                const newList = friends.filter((item) => item.id !== id);
+                setBlocked((old) => [...old, data.member])
+                setFriends(newList);
+                toast('Utilisateur bloqué',
+                    {
+                        icon: '🚫',
+                        style: {
+                            borderRadius: '10px',
+                            background: '#2b2b30',
+                            color: '#fff',
+                            border: '1px solid #d64356',
+                        },
+                    }
+                );
+            })
     }
 
     function unblockUser(id) {
@@ -126,15 +126,17 @@ const Friends = () => {
                 {(isFetched && blockedFetched) ? (
                     <div>
                         {friends.map((user) => (
-                            <FriendCard user={user}
-                                        primaryCallback={() => removeFriend(user.id)}
-                                        primaryIcon={faTimes}
-                                        primaryText='Supprimer'
-                                        primaryClassName='button is-white is-outlined'
-                                        secondaryCallback={() => blockFriend(user.id)}
-                                        secondaryIcon={faBan}
-                                        secondaryText='Bloquer'
-                                        secondaryClassName='button is-danger is-outlined'
+                            <FriendCard
+                                key={user.id}
+                                user={user}
+                                primaryCallback={() => removeFriend(user.id)}
+                                primaryIcon={faTimes}
+                                primaryText='Supprimer'
+                                primaryClassName='button is-white is-outlined'
+                                secondaryCallback={() => blockFriend(user.id)}
+                                secondaryIcon={faBan}
+                                secondaryText='Bloquer'
+                                secondaryClassName='button is-danger is-outlined'
                             />
                         ))}
 
@@ -145,11 +147,13 @@ const Friends = () => {
                             </h1>
 
                             {blocked.map((user) => (
-                                <FriendCard user={user}
-                                            primaryCallback={() => unblockUser(user.id)}
-                                            primaryText='Débloquer'
-                                            primaryClassName='button is-success is-outlined'
-                                            primaryIcon={faCheckSquare}
+                                <FriendCard
+                                    key={user.id}
+                                    user={user}
+                                    primaryCallback={() => unblockUser(user.id)}
+                                    primaryText='Débloquer'
+                                    primaryClassName='button is-success is-outlined'
+                                    primaryIcon={faCheckSquare}
                                 />
                             ))
                             }

@@ -58,6 +58,7 @@ const FriendRequest = () => {
                         {friends.length !== 0 ? (
                             friends.map((user) => (
                                 <FriendCard user={user}
+                                            key={user.id}
                                             primaryCallback={() => addFriend(user.id)}
                                             primaryClassName='button is-white is-outlined'
                                             primaryText='Accepter'

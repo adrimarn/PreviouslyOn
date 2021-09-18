@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Navbar from "../components/Navbar";
-import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faUser, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {fetchAPI} from "../services/FetchAPI";
 import FriendCard from "../components/FriendCard";
 import {useCookies} from "react-cookie";
 import Loading from "../components/Loading";
-
+import {toast} from "react-hot-toast";
 
 const SearchMember = () => {
     const [cookies] = useCookies();
@@ -39,6 +39,29 @@ const SearchMember = () => {
         return setNeedle(needle)
     }
 
+    const emptyFunc = () => {
+        return false;
+    }
+
+    function addFriend(id, index) {
+        return fetchAPI.addFriend({id, token})
+            .then(() => {
+                const updatedUsers = [...users];
+                updatedUsers[index].in_account = true;
+                setUsers(updatedUsers);
+                toast.success('Ami ajouté',
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#2b2b30',
+                            color: '#fff',
+                            border: '1px solid #d64356',
+                        },
+                    }
+                );
+            });
+    }
+
     return (
         <>
             <Navbar/>
@@ -48,7 +71,7 @@ const SearchMember = () => {
                     <div className="dropdown-trigger">
                         <div className="field">
                             <p className="control is-expanded has-icons-right">
-                                <input className="input" type="search" placeholder="Search..."
+                                <input className="input" type="text" placeholder="Recherche un membre..."
                                        onChange={(e) => handleSearch(e.target.value)}/>
                                 <span className="icon is-right">
                                     <FontAwesomeIcon icon={faSearch}/>
@@ -63,13 +86,25 @@ const SearchMember = () => {
                     isFetched && (
                         <div className='mt-6'>
                             {users.length !== 0 ?
-                                users.map((user) => (
-                                    <FriendCard user={user}
-                                                primaryCallback={''}
-                                                primaryIcon={faUser}
-                                                primaryText='Ajouter en ami'
-                                                primaryClassName='button is-outlined'
-                                    />
+                                users.map((user, index) => (
+                                    user.in_account ?
+                                        <FriendCard
+                                            key={index}
+                                            user={user}
+                                            primaryCallback={() => emptyFunc}
+                                            primaryIcon={faUser}
+                                            primaryText='Ami'
+                                            primaryClassName='button is-static'
+                                        />
+                                        :
+                                        <FriendCard
+                                            key={index}
+                                            user={user}
+                                            primaryCallback={() => addFriend(user.id, index)}
+                                            primaryIcon={faUserPlus}
+                                            primaryText='Ajouter en ami'
+                                            primaryClassName='button is-outlined'
+                                        />
                                 ))
                                 : (
                                     needle.length > 2 && isTyping === false && (

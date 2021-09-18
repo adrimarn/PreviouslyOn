@@ -10,10 +10,10 @@ const FriendCard = ({
                         primaryClassName,
                         primaryIcon,
                         secondaryClassName,
-                        secondaryIcon
+                        secondaryIcon,
                     }) => {
     return (
-        <div key={user.id}>
+        <div>
             <div className="friend_card mb-3">
                 <div className="card-content">
                     <div className="media">
@@ -42,18 +42,19 @@ const FriendCard = ({
                             {primaryCallback && (
                                 <button className={primaryClassName}
                                         onClick={primaryCallback}>
-                          <span className="icon is-small mr-0">
-                            <FontAwesomeIcon icon={primaryIcon}/>
-                          </span> {primaryText}
+                                    <span className="icon is-small">
+                                        <FontAwesomeIcon icon={primaryIcon}/>
+                                    </span>
+                                    <span>{primaryText}</span>
                                 </button>
                             )}
                             {secondaryCallback && (
                                 <button className={secondaryClassName}
                                         onClick={secondaryCallback}>
-                          <span className="icon is-small mr-0">
-                            <FontAwesomeIcon icon={secondaryIcon}/>
-                          </span>
-                                    {secondaryText}
+                                    <span className="icon is-small">
+                                        <FontAwesomeIcon icon={secondaryIcon}/>
+                                    </span>
+                                    <span>{secondaryText}</span>
                                 </button>
                             )}
                         </div>

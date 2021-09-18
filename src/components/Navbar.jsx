@@ -44,7 +44,7 @@ const Navbar = () => {
                             <Link to="/myshows" className="navbar-item">
                                 Mes séries
                             </Link>
-                            <Link to={''} className="navbar-item has-dropdown is-hoverable">
+                            <div className="navbar-item has-dropdown is-hoverable">
                                 <Link to={''}
                                       onClick={(e) => e.preventDefault()}
                                       className="navbar-link">
@@ -57,8 +57,12 @@ const Navbar = () => {
                                     <Link to='/friends/request' className="navbar-item">
                                         Mes demandes
                                     </Link>
+                                    <hr className="navbar-divider"/>
+                                    <Link to='/members/search' className="navbar-item">
+                                        Rechercher un membre
+                                    </Link>
                                 </div>
-                            </Link>
+                            </div>
                         </>
                     )}
                 </div>

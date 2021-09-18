@@ -28,7 +28,7 @@ function App() {
                     <Route exact path='/login' component={Login}/>
                     <PrivateRoute exact path='/friends' component={Friends} loginPath={'/login'}/>
                     <PrivateRoute exact path='/friends/request' component={FriendRequest} loginPath={'/login'}/>
-                    <PrivateRoute exact path='/search' component={SearchMember} loginPath={'/login'}/>
+                    <PrivateRoute exact path='/members/search' component={SearchMember} loginPath={'/login'}/>
                     <PrivateRoute exact path='/myshows' component={MyShows} loginPath={'/login'}/>
                     <Route exact path='/show/:id' component={Show} loginPath={'/login'}/>
                     <Route exact path='/shows' component={Shows}/>
