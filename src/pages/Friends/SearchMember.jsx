@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import {faSearch, faUser, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {fetchAPI} from "../services/FetchAPI";
-import FriendCard from "../components/FriendCard";
+import {fetchAPI} from "../../services/FetchAPI";
+import FriendCard from "../../components/FriendCard";
 import {useCookies} from "react-cookie";
-import Loading from "../components/Loading";
+import Loading from "../../components/Loading";
 import {toast} from "react-hot-toast";
 
 const SearchMember = () => {

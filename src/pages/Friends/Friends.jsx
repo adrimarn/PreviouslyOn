@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import {useCookies} from "react-cookie";
-import {fetchAPI} from "../services/FetchAPI";
+import {fetchAPI} from "../../services/FetchAPI";
 import {useHistory} from "react-router-dom";
-import Loading from "../components/Loading";
+import Loading from "../../components/Loading";
 import {toast} from "react-hot-toast";
-import FriendCard from "../components/FriendCard";
+import FriendCard from "../../components/FriendCard";
 import {faBan, faCheckSquare, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 const Friends = () => {

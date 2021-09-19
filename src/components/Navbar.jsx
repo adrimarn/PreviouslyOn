@@ -10,9 +10,9 @@ const Navbar = () => {
     return (
         <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
+                <Link className="navbar-item" to={''}>
                     <img src={logo} width="112" height="28" alt='PreviouslyOn'/>
-                </a>
+                </Link>
                 <Link
                     to={''}
                     onClick={(e) => {
@@ -33,9 +33,6 @@ const Navbar = () => {
 
             <div id="navbarApp" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
                 <div className="navbar-start">
-                    <Link to={'/'} className="navbar-item">
-                        Accueil
-                    </Link>
                     <Link to={'/shows'} className="navbar-item">
                         Liste des séries
                     </Link>

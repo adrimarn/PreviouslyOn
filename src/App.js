@@ -4,15 +4,15 @@ import Home from "./pages/Home";
 import Callback from "./pages/Callback";
 import {AuthProvider, PrivateRoute} from "react-auth-kit";
 import Login from "./pages/Login";
-import MyShows from "./pages/MyShows";
+import MyShows from "./pages/Shows/MyShows";
 import CheckTokenService from "./services/CheckToken";
-import Show from "./pages/Show";
-import Shows from "./pages/Shows";
-import Friends from "./pages/Friends";
+import Show from "./pages/Shows/Show";
+import Shows from "./pages/Shows/Shows";
+import Friends from "./pages/Friends/Friends";
 import Profile from "./pages/Profile";
 import {Toaster} from "react-hot-toast";
-import FriendRequest from "./pages/FriendRequest";
-import SearchMember from "./pages/SearchMember";
+import FriendRequest from "./pages/Friends/FriendRequest";
+import SearchMember from "./pages/Friends/SearchMember";
 
 function App() {
     return (

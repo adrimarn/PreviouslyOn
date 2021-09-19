@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import {useHistory} from "react-router-dom";
-import {fetchAPI} from "../services/FetchAPI";
+import {fetchAPI} from "../../services/FetchAPI";
 import {useCookies} from "react-cookie";
-import ShowCard from "../components/ShowCard";
-import Loading from "../components/Loading";
+import ShowCard from "../../components/ShowCard";
+import Loading from "../../components/Loading";
 
 const MyShows = () => {
     const [isFetched, setFetch] = useState(false)

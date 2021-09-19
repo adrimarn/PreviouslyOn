@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {fetchAPI} from "../services/FetchAPI";
+import {fetchAPI} from "../../services/FetchAPI";
 import {useCookies} from "react-cookie";
-import Navbar from "../components/Navbar";
-import ArchiveLink from "../components/ArchiveLink";
+import Navbar from "../../components/Navbar";
+import ArchiveLink from "../../components/ArchiveLink";
 
 const Show = () => {
     const {id} = useParams();

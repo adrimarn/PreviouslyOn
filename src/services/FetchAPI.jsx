@@ -105,10 +105,16 @@ class FetchAPI {
      * Retrieve shows
      * @param {Object} params
      * @param {'alphabetical', 'popularity', 'followers'} params.order - Print order
+     * @param [params.start] - Print start (optional, default : 0)
+     * @param [params.limit] - Print limit (optional, default : 100)
      * @param {string} [params.token] - Token of the authenticated user (optional)
      */
     getShows(params) {
-        return fetch(`${oauthServerUrl}/shows/list?order=${params.order}`, {
+        let queryStart
+        let queryLimit
+        params.start ? queryStart = params.start : queryStart = 0
+        params.limit ? queryLimit = params.limit : queryLimit = 100
+        return fetch(`${oauthServerUrl}/shows/list?order=${params.order}&start=${queryStart}&limit=${queryLimit}`, {
             method: 'GET',
             headers: authHeader(params.token),
         })
@@ -286,10 +292,10 @@ class FetchAPI {
      * @param {string} [params.token] - Token of the authenticated user (optional)
      */
     searchMember(params) {
-            return fetch(`${oauthServerUrl}/members/search?login=%${params.login}%`, {
-                method: 'GET',
-                headers: authHeader(params.token),
-            })
+        return fetch(`${oauthServerUrl}/members/search?login=%${params.login}%`, {
+            method: 'GET',
+            headers: authHeader(params.token),
+        })
     }
 
 

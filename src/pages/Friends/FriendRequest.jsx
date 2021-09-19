@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
-import {fetchAPI} from "../services/FetchAPI";
+import {fetchAPI} from "../../services/FetchAPI";
 import {useCookies} from "react-cookie";
 import {useHistory} from "react-router-dom";
-import Navbar from "../components/Navbar";
-import FriendCard from "../components/FriendCard";
+import Navbar from "../../components/Navbar";
+import FriendCard from "../../components/FriendCard";
 
 const FriendRequest = () => {
     const [cookies] = useCookies();
