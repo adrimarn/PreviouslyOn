@@ -62,7 +62,9 @@ const Show = () => {
                                 {episode.description.substring(0, 150)}
                                 {episode.description.length > 150 && '...'}
                             </p>
-                            <b className='has-text-white'>{episode.code}</b>
+                            <ul className='card__list'>
+                                <li>{episode.code}</li>
+                            </ul>
                         </div>
                     </div>
                 )
@@ -76,15 +78,17 @@ const Show = () => {
         for (let i = 1; i <= nbSeason; i++) {
             option[i] = <option value={i}>Saison {i}</option>
         }
-        return (
-            <div className='column is-full-mobile is-2'>
-                <div className="select is-fullwidth">
-                    <select value={selectedSeason} onChange={handleChange} id="season-select">
-                        {option}
-                    </select>
+        if (nbSeason > 1) {
+            return (
+                <div className='column is-full-mobile is-2'>
+                    <div className="select is-fullwidth">
+                        <select value={selectedSeason} onChange={handleChange} id="season-select">
+                            {option}
+                        </select>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 
     const handleChange = (e) => {
@@ -103,8 +107,18 @@ const Show = () => {
                                 <h1 className="section__title_wl is-size-2 has-text-centered mt-2">
                                     {show.title}
                                 </h1>
+                                {show.platforms &&
+                                <div>
+                                    <p className='has-text-grey-light is-size-7 mb-1'>Disponible sur : </p>
+                                    <ul className='card__list'>
+                                        {show.platforms.svods.map((svod) => {
+                                            return <li>{svod.name}</li>
+                                        })}
+                                    </ul>
+                                </div>}
+                                <br/>
                                 <div className="columns">
-                                    <div className="is-size-7 has-text-white pl-2 column is-6">
+                                    <div className="is-size-7 has-text-white column is-6">
                                         <span className='has-text-weight-bold'>Genre: </span>
                                         <span className='text_gradient'>
                                             {Object.keys(show.genres).map((genre, index) => (
@@ -147,7 +161,7 @@ const Show = () => {
                             </div>
                         </div>
                         <div>
-                            <h2 className="section__subtitle is-size-5 has-text-centered">Liste des épisodes</h2>
+                            <h2 className="section__subtitle is-size-5 has-text-centered mb-5">Liste des épisodes</h2>
                             {selectSeason()}
                             <div className="columns is-multiline">
                                 {showEpisode(selectedSeason)}
