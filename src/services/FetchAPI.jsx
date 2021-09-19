@@ -297,6 +297,34 @@ class FetchAPI {
             headers: authHeader(params.token),
         })
     }
+    /**
+     * Retrieves episodes from show
+     * @param {Object} params
+     * @param {string} params.id - Show ID
+     * @param {string} [params.season] - Show season (optional)
+     * @param {string} [params.token] - Token of the authenticated user (optional)
+     */
+    getEpisodes(params) {
+        let paramSeason;
+        params.season ? paramSeason = `&season=${params.season}` : paramSeason = ''
+        return fetch(`${oauthServerUrl}/shows/episodes?id=${params.id}${paramSeason}`, {
+            method: 'GET',
+            headers: authHeader(params.token),
+        })
+    }
+
+    /**
+     * Retrieves picture from episode
+     * @param {Object} params
+     * @param {string} params.id - Show ID
+     * @param {string} [params.token] - Token of the authenticated user (optional)
+     */
+    getEpisodePicture(params) {
+        return fetch(`${oauthServerUrl}/pictures/episodes?id=${params.id}`, {
+            method: 'GET',
+            headers: authHeader(params.token),
+        })
+    }
 
 
 }
