@@ -292,7 +292,7 @@ class FetchAPI {
      * @param {string} [params.token] - Token of the authenticated user (optional)
      */
     searchMember(params) {
-        return fetch(`${oauthServerUrl}/members/search?login=%${params.login}%`, {
+        return fetch(`${oauthServerUrl}/members/search?login=${params.login}%`, {
             method: 'GET',
             headers: authHeader(params.token),
         })

@@ -12,22 +12,41 @@ const SearchMember = () => {
     const [cookies] = useCookies();
     const token = cookies._auth;
     const [needle, setNeedle] = useState('');
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState([]);
     const [isFetched, setFetch] = useState(false);
     const [isFetching, setFetching] = useState(false);
     const [isTyping, setTyping] = useState(false);
 
     useEffect(() => {
         const stopTyping = setTimeout(() => {
-            setTyping(false)
             if (needle.length > 2) {
+                setTyping(false)
                 setFetching(true)
                 fetchAPI.searchMember({login: needle, token})
                     .then(res => res.json())
                     .then((data) => {
-                        setUsers(data.users)
-                        setFetch(true)
+                        const userList = data.users
+                        setUsers(userList)
+                        userList.map((user, index) => {
+                            return fetchAPI.getUserInfo({id: user.id, token})
+                                .then((res) => {
+                                    if (res.ok) {
+                                        return res.json();
+                                    } else {
+                                        throw new Error('Something went wrong');
+                                    }
+                                })
+                                .then((data ) => {
+                                        const updatedUsers = [...userList];
+                                        updatedUsers[index].avatar = data.member.avatar;
+                                        setUsers(updatedUsers);
+                                })
+                                .catch(() => {
+
+                                })
+                        });
                         setFetching(false)
+                        setFetch(true)
                     })
             }
         }, 500);
@@ -85,7 +104,7 @@ const SearchMember = () => {
                 ) : (
                     isFetched && (
                         <div className='mt-6'>
-                            {users.length !== 0 ?
+                            {users.length !== 0 ? (
                                 users.map((user, index) => (
                                     user.in_account ?
                                         <FriendCard
@@ -106,11 +125,11 @@ const SearchMember = () => {
                                             primaryClassName='button is-outlined'
                                         />
                                 ))
-                                : (
-                                    needle.length > 2 && isTyping === false && (
-                                        <p className='has-text-centered'>Aucun utilisateur correspondant à {needle}</p>
-                                    )
+                            ) : (
+                                needle.length > 2 && isTyping === false && (
+                                    <p className='has-text-centered'>Aucun utilisateur correspondant à {needle}</p>
                                 )
+                            )
                             }
                         </div>
                     ))}

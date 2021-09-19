@@ -17,7 +17,7 @@ const Shows = () => {
 
 
     const getShows = (offset = 0) => {
-        fetchAPI.getShows({order: 'popularity', token, start: offset, limit: 50})
+        fetchAPI.getShows({order: 'popularity', token, start: offset, limit: 48})
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Something went wrong');
@@ -27,7 +27,7 @@ const Shows = () => {
             })
             .then((data) => {
                 setShows(old => [...old, ...data.shows])
-                setShowsOffset(offset + 50)
+                setShowsOffset(offset + 48)
                 setFetch(true)
             })
             .catch((error) => {
