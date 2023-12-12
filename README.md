@@ -2,6 +2,10 @@
 
 Student project for [W@C by Epitech](https://www.webacademie.org/). Promo 2022 Strasbourg
 
+### Screenshot
+
+<img src="https://github.com/adrimarn/PreviouslyOn/assets/74007878/c739fbd2-ac40-497d-b86e-a4a27ff66c99" width="400" />
+
 ## Contributor
 
 - Adrien Marion (<adrien.marion@epitech.eu>)
